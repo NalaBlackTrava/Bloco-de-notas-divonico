@@ -11,9 +11,13 @@ class BlocoDeNotas:
         self.texto = tk.Text(root)
         self.texto.pack(expand=True, fill='both')
         self.iniciar_botoes()
+        self.texto.config(bg="#002FA7", fg="white", font=("Arial", 14, "bold"))
+        self.inicio = datetime.now()    # Inicializa a variável self.inicio
 
     def iniciar_botoes(self):
-        frame_botoes = ttk.Frame(self.root)
+        s = ttk.Style()
+        s.configure('my.TFrame', background='#002FA7', borderwidth=10, relief='flat', padding=10)
+        frame_botoes = ttk.Frame(self.root, style='my.TFrame')
         frame_botoes.pack()
         
         botao_estatisticas = ttk.Button(frame_botoes, text="Estatísticas", command=self.calcular_estatisticas)
@@ -60,5 +64,4 @@ class BlocoDeNotas:
 if __name__ == "__main__":
     root = tk.Tk()
     bloco_de_notas = BlocoDeNotas(root)
-    bloco_de_notas.inicio = datetime.now()
     root.mainloop()
